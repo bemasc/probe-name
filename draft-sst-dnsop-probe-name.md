@@ -9,11 +9,11 @@ number:
 date:
 consensus: true
 v: 3
-area: OPS
-workgroup: DNSOP
+area: ""
+workgroup: "Domain Name System Operations"
 keyword:
 venue:
-  github: bemasc/probe-name
+  github: "bemasc/probe-name"
 
 author:
  -
