@@ -35,32 +35,33 @@ This specification standardizes DNS names that should be used for checking conne
 
 # Introduction
 
-In DNS, clients normally send queries to a recursive resolver in order to receive the resolution results.  However, some clients also send queries merely to check that a response is received at all.  We call these queries "DNS probes".  DNS probes are used for many reasons:
+In the Domain Name System (DNS, {{!RFC1034}}), clients normally send queries to a recursive resolver in order to receive the resolution results.  However, some clients also send queries merely to check that a response is received at all.  We call these queries "DNS probes".  DNS probes are used for many reasons:
 
 * To determine if the network is working at all.
 * To detect if a particular address family is connected to the global internet.
 * To check that the client is able to reach the resolver's IP address.
-* To establish which transport protocols (e.g., UDP, TCP, TLS, QUIC) are available.
+* To assess the reliability and performance of the network path between the client and the resolver.
+* To establish which transport protocols (e.g., UDP, TCP, TLS {{?RFC7858}}, QUIC {{?RFC9250}}) are available.
 * To confirm that the DNS resolver itself is operational.
 
-When sending a DNS query, the client must include a DNS question.  This forces a choice onto the client: what QNAME and QTYPE should the client send?  Popular QNAME values for probes include:
+When sending a DNS query, the client must choose a QNAME.  Popular QNAME values for probes include:
 
 * Names owned by the entity performing the probe.
 * Names used by prominent, high-reliability internet services.
-* Names operated at the direction of prominent internet organizations such as the IETF.
+* Names operated at the direction of prominent internet organizations such as the IETF (e.g., "example.com", {{?RFC2606}}).
 * Names that form an essential part of the internet infrastructure.
 
 These choices are pragmatic, but they also present a number of downsides for the client:
 
-* The probe could be unexpectedly slow if the selected name is not in cache.
+* The response could be delayed if the selected name is not in cache.
 * The probe will return unneeded RDATA, wasting bandwidth.
-* Depending on the success criteria, he probe could report a spurious failure
+* Depending on the success criteria, the probe could report a spurious failure
   - if the selected name is removed, or experiences an outage.
   - if the resolver experiences an interruption on its outbound link.
 
-These potential QNAMEs also present some downsides for the resolver operator:
+These popular types of QNAME also present some downsides for the resolver operator:
 
-* The probe will cause the resolver to do more work than necessary, especially when the selected name is not in cache.
+* The probe may cause the resolver to do more work than necessary, especially when the selected name is not in cache.
 * The operator cannot distinguish probe queries from ordinary queries, limiting their understanding of how their service is being used.
 * The operator cannot easily contact the sender of excessive or problematic probe queries.
 
@@ -78,11 +79,11 @@ Clients SHOULD NOT set the "DNSSEC OK" flag.  Setting this bit causes more work 
 
 Clients SHOULD avoid any stub caching, as this would cause probe results to be out of date.
 
-Clients MAY set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement the "resolver.arpa." Locally Served Zone.
+Clients MAY set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement this specification.
 
 # Server Requirements
 
-Upon receiving a query with a QNAME of "probe.resolver.arpa.", DNS servers MUST return a valid NXDOMAIN response from the "resolver.arpa." locally-served zone.
+Upon receiving a query with a QNAME of "probe.resolver.arpa.", DNS servers MUST return a valid NXDOMAIN response from the "resolver.arpa." locally-served zone {{?RFC9462}}.
 
 # Security Considerations
 
@@ -92,13 +93,11 @@ If a resolver operator applies rate limits to queries, it SHOULD NOT exclude "pr
 
 ## Special Use Domain Name "probe.resolver.arpa"
 
-This document calls for the addition of "probe.resolver.arpa" to the Special-Use
-Domain Names (SUDN) registry established by {{!RFC6761}}.
+This document calls for the addition of "probe.resolver.arpa" to the Special-Use Domain Names (SUDN) registry established by {{!RFC6761}}.
 
 ## Domain Name Reservation Considerations
 
-In accordance with {{Section 5 of RFC6761}}, the answers to the following
-questions are provided for this document:
+In accordance with {{Section 5 of RFC6761}}, the answers to the following questions are provided for this document:
 
 1) Are human users expected to recognize these names as special and use them
 differently? In what way?
