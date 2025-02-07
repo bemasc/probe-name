@@ -3,7 +3,7 @@ title: "Standardized Query Name for DNS Resolver Reachability Probes"
 abbrev: "DNS Probe Name"
 category: std
 
-docname: draft-sst-dnsop-probe-name
+docname: draft-sst-dnsop-probe-name-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
