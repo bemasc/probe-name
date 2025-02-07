@@ -2,14 +2,14 @@
 
 
 
-DNSOP                                                     B. M. Schwartz
+Domain Name System Operations                             B. M. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                         7 February 2025
 Expires: 11 August 2025
 
 
       Standardized Query Name for DNS Resolver Reachability Probes
-                       draft-sst-dnsop-probe-name
+                   draft-sst-dnsop-probe-name-latest
 
 Abstract
 
@@ -21,7 +21,7 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-sst-dnsop-probe/.
+   https://datatracker.ietf.org/doc/draft-sst-dnsop-probe-name/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/bemasc/probe-name.
@@ -67,17 +67,19 @@ Table of Contents
    6.  IANA Considerations
      6.1.  Special Use Domain Name "probe.resolver.arpa"
      6.2.  Domain Name Reservation Considerations
-   7.  Normative References
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Author's Address
 
 1.  Introduction
 
-   In DNS, clients normally send queries to a recursive resolver in
-   order to receive the resolution results.  However, some clients also
-   send queries merely to check that a response is received at all.  We
-   call these queries "DNS probes".  DNS probes are used for many
-   reasons:
+   In the Domain Name System (DNS, [RFC1034]), clients normally send
+   queries to a recursive resolver in order to receive the resolution
+   results.  However, some clients also send queries merely to check
+   that a response is received at all.  We call these queries "DNS
+   probes".  DNS probes are used for many reasons:
 
    *  To determine if the network is working at all.
 
@@ -87,33 +89,35 @@ Table of Contents
    *  To check that the client is able to reach the resolver's IP
       address.
 
-   *  To establish which transport protocols (e.g., UDP, TCP, TLS, QUIC)
-      are available.
+   *  To assess the reliability and performance of the network path
+      between the client and the resolver.
+
+   *  To establish which transport protocols (e.g., UDP, TCP, TLS
+      [RFC7858], QUIC [RFC9250]) are available.
 
    *  To confirm that the DNS resolver itself is operational.
 
-   When sending a DNS query, the client must include a DNS question.
-   This forces a choice onto the client: what QNAME and QTYPE should the
-   client send?  Popular QNAME values for probes include:
+   When sending a DNS query, the client must choose a QNAME.  Popular
+   QNAME values for probes include:
 
    *  Names owned by the entity performing the probe.
 
    *  Names used by prominent, high-reliability internet services.
 
    *  Names operated at the direction of prominent internet
-      organizations such as the IETF.
+      organizations such as the IETF (e.g., "example.com", [RFC2606]).
 
    *  Names that form an essential part of the internet infrastructure.
 
    These choices are pragmatic, but they also present a number of
    downsides for the client:
 
-   *  The probe could be unexpectedly slow if the selected name is not
-      in cache.
+   *  The response could be delayed if the selected name is not in
+      cache.
 
    *  The probe will return unneeded RDATA, wasting bandwidth.
 
-   *  Depending on the success criteria, he probe could report a
+   *  Depending on the success criteria, the probe could report a
       spurious failure
 
       -  if the selected name is removed, or experiences an outage.
@@ -121,10 +125,10 @@ Table of Contents
       -  if the resolver experiences an interruption on its outbound
          link.
 
-   These potential QNAMEs also present some downsides for the resolver
-   operator:
+   These popular types of QNAME also present some downsides for the
+   resolver operator:
 
-   *  The probe will cause the resolver to do more work than necessary,
+   *  The probe may cause the resolver to do more work than necessary,
       especially when the selected name is not in cache.
 
    *  The operator cannot distinguish probe queries from ordinary
@@ -159,13 +163,13 @@ Table of Contents
 
    Clients MAY set the "Recursion Desired" flag to either value.
    Setting this flag to 0 reduces load on resolvers that do not
-   implement the "resolver.arpa."  Locally Served Zone.
+   implement this specification.
 
 4.  Server Requirements
 
    Upon receiving a query with a QNAME of "probe.resolver.arpa.", DNS
    servers MUST return a valid NXDOMAIN response from the
-   "resolver.arpa." locally-served zone.
+   "resolver.arpa." locally-served zone [RFC9462].
 
 5.  Security Considerations
 
@@ -238,7 +242,13 @@ Table of Contents
    These names are inside an existing Locally Served Zone
    ("resolver.arpa."), so the question of registration requests is moot.
 
-7.  Normative References
+7.  References
+
+7.1.  Normative References
+
+   [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
+              STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
+              <https://www.rfc-editor.org/rfc/rfc1034>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -252,6 +262,27 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+7.2.  Informative References
+
+   [RFC2606]  Eastlake 3rd, D. and A. Panitz, "Reserved Top Level DNS
+              Names", BCP 32, RFC 2606, DOI 10.17487/RFC2606, June 1999,
+              <https://www.rfc-editor.org/rfc/rfc2606>.
+
+   [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
+              and P. Hoffman, "Specification for DNS over Transport
+              Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
+              2016, <https://www.rfc-editor.org/rfc/rfc7858>.
+
+   [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
+              Dedicated QUIC Connections", RFC 9250,
+              DOI 10.17487/RFC9250, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9250>.
+
+   [RFC9462]  Pauly, T., Kinnear, E., Wood, C. A., McManus, P., and T.
+              Jensen, "Discovery of Designated Resolvers", RFC 9462,
+              DOI 10.17487/RFC9462, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9462>.
 
 Acknowledgments
 
