@@ -81,6 +81,23 @@ Clients SHOULD avoid any stub caching, as this would cause probe results to be o
 
 Clients MAY set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement this specification.
 
+## Using `getaddrinfo`
+
+Clients MAY perform probe queries using a high-level DNS query interface such as `getaddrinfo` ({{?RFC3493, Section 6.1}}).  Note that implementations of `getaddrinfo` and similar interfaces often employ a stub cache, resulting in probe results that may not be fresh.  These implementations typically retry queries across several servers until one responds successfully, so the result may not be attributable to a specific resolver and cannot be used to assess the network's latency or packet loss rate.
+
+Clients that use `getaddrinfo` for probes SHOULD call it with the following input parameters:
+
+* nodename = "probe.resolver.arpa."
+* servname = null
+* hints = null or all zeros except for .ai_family
+
+Clients SHOULD interpret the `getaddrinfo` return value as follows:
+
+* EAI_NONAME: The probe has succeeded.
+* EAI_AGAIN: The probe has failed.
+* 0: The resolver is misconfigured (returning addresses where there should be none).
+* Any other error: The client system is misconfigured.
+
 # Server Requirements
 
 Upon receiving a query with a QNAME of "probe.resolver.arpa.", DNS servers MUST return a valid NXDOMAIN response from the "resolver.arpa." locally-served zone {{?RFC9462}}.
