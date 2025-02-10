@@ -20,6 +20,10 @@ author:
     fullname: Benjamin M. Schwartz
     organization: Meta Platforms, Inc.
     email: ietf@bemasc.net
+ -
+    fullname: John Todd
+    organization: Quad9
+    email: jtodd@quad9.net
 
 normative:
 
