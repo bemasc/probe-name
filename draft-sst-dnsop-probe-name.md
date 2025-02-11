@@ -21,6 +21,10 @@ author:
     organization: Meta Platforms, Inc.
     email: ietf@bemasc.net
  -
+    fullname: Puneet Sood
+    organization: Google
+    email: puneets@google.com
+ -
     fullname: John Todd
     organization: Quad9
     email: jtodd@quad9.net
