@@ -5,8 +5,8 @@
 Domain Name System Operations                             B. M. Schwartz
 Internet-Draft                                      Meta Platforms, Inc.
 Intended status: Standards Track                                 P. Sood
-Expires: 15 August 2025                                           Google
-                                                        11 February 2025
+Expires: 22 August 2025                                           Google
+                                                        18 February 2025
 
 
       Standardized Query Name for DNS Resolver Reachability Probes
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2025.
+   This Internet-Draft will expire on 22 August 2025.
 
 Copyright Notice
 
@@ -125,6 +125,9 @@ Table of Contents
 
       -  if the resolver experiences an interruption on its outbound
          link.
+
+   *  A distinctive QNAME could enable unwanted fingerprinting of the
+      client by the resolver or a network adversary.
 
    These popular types of QNAME also present some downsides for the
    resolver operator:
