@@ -1150,7 +1150,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-client-requirements" class="internal xref">Client Requirements</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-client-requirements" class="internal xref">Client Requirements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-using-getaddrinfo" class="internal xref">Using <code>getaddrinfo</code></a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-server-requirements" class="internal xref">Server Requirements</a></p>
@@ -1290,6 +1295,41 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-3">Clients <span class="bcp14">SHOULD NOT</span> set the "DNSSEC OK" flag.  Setting this bit causes more work for the resolver, but does not provide any benefit to the client.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">Clients <span class="bcp14">SHOULD</span> avoid any stub caching, as this would cause probe results to be out of date.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Clients <span class="bcp14">MAY</span> set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement this specification.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<div id="using-getaddrinfo">
+<section id="section-3.1">
+        <h3 id="name-using-getaddrinfo">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-using-getaddrinfo" class="section-name selfRef">Using <code>getaddrinfo</code></a>
+        </h3>
+<p id="section-3.1-1">Clients <span class="bcp14">MAY</span> perform probe queries using a high-level DNS query interface such as <code>getaddrinfo</code> (<span>[<a href="#RFC3493" class="cite xref">RFC3493</a>], <a href="https://rfc-editor.org/rfc/rfc3493#section-6.1" class="relref">Section 6.1</a></span>).  Note that implementations of <code>getaddrinfo</code> and similar interfaces often employ a stub cache, resulting in probe results that may not be fresh.  These implementations typically retry queries across several servers until one responds successfully, so the result may not be attributable to a specific resolver and cannot be used to assess the network's latency or packet loss rate.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Clients that use <code>getaddrinfo</code> for probes <span class="bcp14">SHOULD</span> call it with the following input parameters:<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-3.1">
+            <p id="section-3.1-3.1.1">nodename = "probe.resolver.arpa."<a href="#section-3.1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-3.2">
+            <p id="section-3.1-3.2.1">servname = null<a href="#section-3.1-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-3.3">
+            <p id="section-3.1-3.3.1">hints = null or all zeros except for .ai_family<a href="#section-3.1-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.1-4">Clients <span class="bcp14">SHOULD</span> interpret the <code>getaddrinfo</code> return value as follows:<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-5.1">
+            <p id="section-3.1-5.1.1">EAI_NONAME: The probe has succeeded.<a href="#section-3.1-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-5.2">
+            <p id="section-3.1-5.2.1">EAI_AGAIN: The probe has failed.<a href="#section-3.1-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-5.3">
+            <p id="section-3.1-5.3.1">0: The resolver is misconfigured (returning addresses where there should be none).<a href="#section-3.1-5.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-5.4">
+            <p id="section-3.1-5.4.1">Any other error: The client system is misconfigured.<a href="#section-3.1-5.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="server-requirements">
@@ -1399,6 +1439,10 @@ but only to a specially-designated entity?<a href="#section-6.2-14" class="pilcr
 <dt id="RFC2606">[RFC2606]</dt>
         <dd>
 <span class="refAuthor">Eastlake 3rd, D.</span> and <span class="refAuthor">A. Panitz</span>, <span class="refTitle">"Reserved Top Level DNS Names"</span>, <span class="seriesInfo">BCP 32</span>, <span class="seriesInfo">RFC 2606</span>, <span class="seriesInfo">DOI 10.17487/RFC2606</span>, <time datetime="1999-06" class="refDate">June 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2606">https://www.rfc-editor.org/rfc/rfc2606</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3493">[RFC3493]</dt>
+        <dd>
+<span class="refAuthor">Gilligan, R.</span>, <span class="refAuthor">Thomson, S.</span>, <span class="refAuthor">Bound, J.</span>, <span class="refAuthor">McCann, J.</span>, and <span class="refAuthor">W. Stevens</span>, <span class="refTitle">"Basic Socket Interface Extensions for IPv6"</span>, <span class="seriesInfo">RFC 3493</span>, <span class="seriesInfo">DOI 10.17487/RFC3493</span>, <time datetime="2003-02" class="refDate">February 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3493">https://www.rfc-editor.org/rfc/rfc3493</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7858">[RFC7858]</dt>
         <dd>

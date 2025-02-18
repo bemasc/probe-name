@@ -63,6 +63,7 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Client Requirements
+     3.1.  Using getaddrinfo
    4.  Server Requirements
    5.  Security Considerations
    6.  IANA Considerations
@@ -173,6 +174,37 @@ Table of Contents
    Setting this flag to 0 reduces load on resolvers that do not
    implement this specification.
 
+3.1.  Using getaddrinfo
+
+   Clients MAY perform probe queries using a high-level DNS query
+   interface such as getaddrinfo ([RFC3493], Section 6.1).  Note that
+   implementations of getaddrinfo and similar interfaces often employ a
+   stub cache, resulting in probe results that may not be fresh.  These
+   implementations typically retry queries across several servers until
+   one responds successfully, so the result may not be attributable to a
+   specific resolver and cannot be used to assess the network's latency
+   or packet loss rate.
+
+   Clients that use getaddrinfo for probes SHOULD call it with the
+   following input parameters:
+
+   *  nodename = "probe.resolver.arpa."
+
+   *  servname = null
+
+   *  hints = null or all zeros except for .ai_family
+
+   Clients SHOULD interpret the getaddrinfo return value as follows:
+
+   *  EAI_NONAME: The probe has succeeded.
+
+   *  EAI_AGAIN: The probe has failed.
+
+   *  0: The resolver is misconfigured (returning addresses where there
+      should be none).
+
+   *  Any other error: The client system is misconfigured.
+
 4.  Server Requirements
 
    Upon receiving a query with a QNAME of "probe.resolver.arpa.", DNS
@@ -276,6 +308,11 @@ Table of Contents
    [RFC2606]  Eastlake 3rd, D. and A. Panitz, "Reserved Top Level DNS
               Names", BCP 32, RFC 2606, DOI 10.17487/RFC2606, June 1999,
               <https://www.rfc-editor.org/rfc/rfc2606>.
+
+   [RFC3493]  Gilligan, R., Thomson, S., Bound, J., McCann, J., and W.
+              Stevens, "Basic Socket Interface Extensions for IPv6",
+              RFC 3493, DOI 10.17487/RFC3493, February 2003,
+              <https://www.rfc-editor.org/rfc/rfc3493>.
 
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
