@@ -62,6 +62,7 @@ These choices are pragmatic, but they also present a number of downsides for the
 * Depending on the success criteria, the probe could report a spurious failure
   - if the selected name is removed, or experiences an outage.
   - if the resolver experiences an interruption on its outbound link.
+* A distinctive QNAME could enable unwanted fingerprinting of the client by the resolver or a network adversary.
 
 These popular types of QNAME also present some downsides for the resolver operator:
 
