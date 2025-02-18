@@ -1285,10 +1285,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-client-requirements">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-client-requirements" class="section-name selfRef">Client Requirements</a>
       </h2>
-<p id="section-3-1">Clients <span class="bcp14">SHOULD</span> set the QNAME on probe queries to "probe.resolver.arpa.".  Clients <span class="bcp14">MAY</span> use any QTYPE.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Clients <span class="bcp14">SHOULD NOT</span> set the "DNSSEC OK" flag.  Setting this bit causes more work for the resolver, but does not provide any benefit to the client.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Clients <span class="bcp14">SHOULD</span> avoid any stub caching, as this would cause probe results to be out of date.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">Clients <span class="bcp14">MAY</span> set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement this specification.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-1">Clients <span class="bcp14">SHOULD</span> set the QNAME on probe queries to "probe.resolver.arpa.".<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">Clients <span class="bcp14">SHOULD</span> set the QTYPE to A or AAAA.  Clients that use other QTYPEs are at a higher risk of implementation fingerprinting due to the distinctive QTYPE.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Clients <span class="bcp14">SHOULD NOT</span> set the "DNSSEC OK" flag.  Setting this bit causes more work for the resolver, but does not provide any benefit to the client.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">Clients <span class="bcp14">SHOULD</span> avoid any stub caching, as this would cause probe results to be out of date.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">Clients <span class="bcp14">MAY</span> set the "Recursion Desired" flag to either value.  Setting this flag to 0 reduces load on resolvers that do not implement this specification.<a href="#section-3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="server-requirements">
