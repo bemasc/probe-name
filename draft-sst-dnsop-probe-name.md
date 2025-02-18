@@ -78,7 +78,9 @@ This specification registers a Special-Use Domain Name for DNS probing to avoid 
 
 # Client Requirements
 
-Clients SHOULD set the QNAME on probe queries to "probe.resolver.arpa.".  Clients MAY use any QTYPE.
+Clients SHOULD set the QNAME on probe queries to "probe.resolver.arpa.".
+
+Clients SHOULD set the QTYPE to A or AAAA.  Clients that use other QTYPEs are at a higher risk of implementation fingerprinting due to the distinctive QTYPE.
 
 Clients SHOULD NOT set the "DNSSEC OK" flag.  Setting this bit causes more work for the resolver, but does not provide any benefit to the client.
 
