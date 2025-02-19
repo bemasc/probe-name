@@ -72,7 +72,6 @@ These popular types of QNAME also present some downsides for the resolver operat
 
 * The probe may cause the resolver to do more work than necessary, especially when the selected name is not in cache.
 * The operator cannot distinguish probe queries from ordinary queries, limiting their understanding of how their service is being used.
-* The operator cannot easily contact the sender of excessive or problematic probe queries.
 
 This specification registers a Special-Use Domain Name for DNS probing to avoid these downsides.
 
@@ -135,24 +134,24 @@ No.  This name is principally intended to be useful to resolver operators, and s
 2) Are writers of application software expected to make their software
 recognize these names as special and treat them differently? In what way?
 
-Yes.  Writers of DNS resolver monitoring software are expected to categorize queries for these names as distinct from ordinary user-generated queries.
+Yes.  Writers of DNS resolver monitoring software are expected to categorize queries for this name as distinct from ordinary user-generated queries.
 
 3) Are writers of name resolution APIs and libraries expected to make their
 software recognize these names as special and treat them differently? If so, how?
 
-No.  Stub resolvers process these names in the ordinary fashion.
+No.  Stub resolvers process this name in the ordinary fashion.
 
 4) Are developers of caching domain name servers expected to make their
 implementations recognize these names as special and treat them differently?
 If so, how?
 
-No.  These names are subject to ordinary caching logic.
+No.  This name is subject to ordinary caching logic.
 
 5) Are developers of authoritative domain name servers expected to make their
 implementations recognize these names as special and treat them differently?
 If so, how?
 
-No.  Queries for these name are not intended to reach authoritative domain name servers.
+No.  Queries for this name are not intended to reach authoritative domain name servers.
 
 6) Does this reserved Special-Use Domain Name have any potential impact on
 DNS server operators? If they try to configure their authoritative DNS server
@@ -162,13 +161,13 @@ understand why? Even if the name server software doesn't prevent them from
 using this reserved name, are there other ways that it may not work as expected,
 of which the DNS server operator should be aware?
 
-These names have no special impact on DNS server operators beyond those already implied by the status of "resolver.arpa." as a Locally Served Zone.
+This name has no special impact on DNS server operators beyond those already implied by the status of "resolver.arpa." as a Locally Served Zone.
 
 7) How should DNS Registries/Registrars treat requests to register this reserved
 domain name? Should such requests be denied? Should such requests be allowed,
 but only to a specially-designated entity?
 
-These names are inside an existing Locally Served Zone ("resolver.arpa."), so the question of registration requests is moot.
+This name is inside an existing Locally Served Zone ("resolver.arpa."), so the question of registration requests is moot.
 
 --- back
 
