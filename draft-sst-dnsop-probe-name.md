@@ -24,6 +24,10 @@ author:
     fullname: Puneet Sood
     organization: Google
     email: puneets@google.com
+ -
+    fullname: John Todd
+    organization: Quad9
+    email: jtodd@quad9.net
 
 normative:
 
