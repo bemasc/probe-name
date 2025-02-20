@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T01:42:19.971037+00:00",
+  "timestamp": "2025-02-20T01:43:45.379623+00:00",
   "repo": "bemasc/probe-name",
   "labels": [
     {
@@ -55,14 +55,30 @@
       "id": "I_kwDON1-gA86pOh-r",
       "title": "GIve more guidance on QTYPEs",
       "url": "https://github.com/bemasc/probe-name/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "\"any\" is too wide.  Some don't make sense.",
       "createdAt": "2025-02-07T21:52:32Z",
-      "updatedAt": "2025-02-07T21:52:32Z",
+      "updatedAt": "2025-02-18T19:31:19Z",
+      "closedAt": "2025-02-18T19:31:19Z",
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDON1-gA86qkuZC",
+      "title": "Decide wording for the proposed qname: is it an SUDN or not",
+      "url": "https://github.com/bemasc/probe-name/issues/7",
+      "state": "OPEN",
+      "author": "puneetsood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 1 at the very end states:\n\n\"This specification registers a Special-Use Domain Name for DNS probing to avoid these downsides.\"\n\nGiven that resolver.arpa is already an SUDN, is the proposed \"probe.resolver.arpa\" qname a new SUDN or a special name within the existing SUDN?\n\nDecide and update wording as needed.\n\n",
+      "createdAt": "2025-02-18T22:19:05Z",
+      "updatedAt": "2025-02-18T22:19:05Z",
       "closedAt": null,
       "comments": []
     }
@@ -73,25 +89,35 @@
       "id": "PR_kwDON1-gA86Kt4Ay",
       "title": "Recommend A or AAAA",
       "url": "https://github.com/bemasc/probe-name/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Fixes #1",
       "createdAt": "2025-02-10T21:54:13Z",
-      "updatedAt": "2025-02-10T21:54:13Z",
+      "updatedAt": "2025-02-18T19:32:35Z",
       "baseRepository": "bemasc/probe-name",
       "baseRefName": "main",
       "baseRefOid": "463a653166fc270fe579342194b3817d3c899766",
       "headRepository": "bemasc/probe-name",
       "headRefName": "bemasc-qtype",
       "headRefOid": "311c486cf281738dfe75b77cf5c38a112f36f858",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2025-02-18T19:31:18Z",
+      "mergedAt": "2025-02-18T19:31:18Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "3b906f177070aa7d6eac270d72e0c9dd51f96db8"
+      },
+      "comments": [
+        {
+          "author": "puneetsood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "LGTM",
+          "createdAt": "2025-02-18T04:11:17Z",
+          "updatedAt": "2025-02-18T04:11:17Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -99,25 +125,35 @@
       "id": "PR_kwDON1-gA86KuIZI",
       "title": "Discuss how to probe with getaddrinfo",
       "url": "https://github.com/bemasc/probe-name/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "I believe probing via getaddrinfo is possible (using the different return codes), but the procedure is not exactly obvious and has some notable limitations.\r\n\r\nThe possibility of using getaddrinfo also helps to motivate the use of A and AAAA QTYPEs in general.",
       "createdAt": "2025-02-10T22:23:51Z",
-      "updatedAt": "2025-02-10T22:23:51Z",
+      "updatedAt": "2025-02-18T19:32:18Z",
       "baseRepository": "bemasc/probe-name",
       "baseRefName": "main",
       "baseRefOid": "463a653166fc270fe579342194b3817d3c899766",
       "headRepository": "bemasc/probe-name",
       "headRefName": "bemasc-getaddrinfo",
       "headRefOid": "b8a376cffdfc7a09abda63cab7a6541c3a8b70eb",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2025-02-18T19:32:13Z",
+      "mergedAt": "2025-02-18T19:32:13Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "33c9026fc53080aaa3b03618470e1058e61a948e"
+      },
+      "comments": [
+        {
+          "author": "puneetsood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "LGTM",
+          "createdAt": "2025-02-18T04:08:56Z",
+          "updatedAt": "2025-02-18T04:08:56Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -125,25 +161,35 @@
       "id": "PR_kwDON1-gA86KuK82",
       "title": "Mention privacy loss in the absence of standardization",
       "url": "https://github.com/bemasc/probe-name/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-02-10T22:27:31Z",
-      "updatedAt": "2025-02-10T22:27:31Z",
+      "updatedAt": "2025-02-18T19:32:27Z",
       "baseRepository": "bemasc/probe-name",
       "baseRefName": "main",
       "baseRefOid": "463a653166fc270fe579342194b3817d3c899766",
       "headRepository": "bemasc/probe-name",
       "headRefName": "bemasc-privacy",
       "headRefOid": "0c09c3e1e12f75659cee05a1a15b0b56b32c795a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2025-02-18T19:31:06Z",
+      "mergedAt": "2025-02-18T19:31:06Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "f0d61bcd6c2512a8596bca705bf7fa0390287a5d"
+      },
+      "comments": [
+        {
+          "author": "puneetsood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "LGTM",
+          "createdAt": "2025-02-18T04:05:11Z",
+          "updatedAt": "2025-02-18T04:05:11Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -179,20 +225,56 @@
       "id": "PR_kwDON1-gA86KuNiy",
       "title": "Add John as coauthor",
       "url": "https://github.com/bemasc/probe-name/pull/6",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-02-10T22:32:03Z",
-      "updatedAt": "2025-02-11T14:08:59Z",
+      "updatedAt": "2025-02-19T13:41:27Z",
       "baseRepository": "bemasc/probe-name",
       "baseRefName": "main",
       "baseRefOid": "14b685658afa4d94bd078149dd27978f26e74e03",
       "headRepository": "bemasc/probe-name",
       "headRefName": "add-john",
       "headRefOid": "99ccba79af5535b6f7d50d5052d5fdfb3206df8f",
+      "closedAt": "2025-02-19T13:41:24Z",
+      "mergedAt": "2025-02-19T13:41:24Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "d1ea937b9cdbd9c43ff48ab8b26fa1742e2d6c15"
+      },
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "OWNER",
+          "body": "Approved OOB",
+          "createdAt": "2025-02-19T13:41:19Z",
+          "updatedAt": "2025-02-19T13:41:19Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDON1-gA86LwPAg",
+      "title": "Cleanup following removal of client-ID subdomains",
+      "url": "https://github.com/bemasc/probe-name/pull/8",
+      "state": "OPEN",
+      "author": "bemasc",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-19T13:48:25Z",
+      "updatedAt": "2025-02-19T13:48:25Z",
+      "baseRepository": "bemasc/probe-name",
+      "baseRefName": "main",
+      "baseRefOid": "d1ea937b9cdbd9c43ff48ab8b26fa1742e2d6c15",
+      "headRepository": "bemasc/probe-name",
+      "headRefName": "bemasc-singular",
+      "headRefOid": "02cf6ae731b2a9a5e2333f3965a5ac3c615035c7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
