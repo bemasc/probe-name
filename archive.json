@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T01:43:45.379623+00:00",
+  "timestamp": "2025-02-23T01:49:18.636095+00:00",
   "repo": "bemasc/probe-name",
   "labels": [
     {
@@ -261,25 +261,35 @@
       "id": "PR_kwDON1-gA86LwPAg",
       "title": "Cleanup following removal of client-ID subdomains",
       "url": "https://github.com/bemasc/probe-name/pull/8",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bemasc",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-02-19T13:48:25Z",
-      "updatedAt": "2025-02-19T13:48:25Z",
+      "updatedAt": "2025-02-20T03:52:15Z",
       "baseRepository": "bemasc/probe-name",
       "baseRefName": "main",
       "baseRefOid": "d1ea937b9cdbd9c43ff48ab8b26fa1742e2d6c15",
       "headRepository": "bemasc/probe-name",
       "headRefName": "bemasc-singular",
       "headRefOid": "02cf6ae731b2a9a5e2333f3965a5ac3c615035c7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2025-02-20T03:51:54Z",
+      "mergedAt": "2025-02-20T03:51:54Z",
+      "mergedBy": "bemasc",
+      "mergeCommit": {
+        "oid": "e6a863c419dd84bb9f8462e20b528e719bffd268"
+      },
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "OWNER",
+          "body": "Editorial; merged without review.",
+          "createdAt": "2025-02-20T03:52:14Z",
+          "updatedAt": "2025-02-20T03:52:14Z"
+        }
+      ],
       "reviews": []
     }
   ]
